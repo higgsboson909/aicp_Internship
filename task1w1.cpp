@@ -1,4 +1,4 @@
-/*by higgsboson
+/*By higgsboson
 dated: 20240528*/
 #include<iostream>
 #include<iomanip>
