@@ -1,4 +1,4 @@
-/*By higgsboson
+/*By JhangirAhmad
 dated: 20240528*/
 #include<iostream>
 #include<iomanip>
@@ -12,20 +12,32 @@ const string itemCode[8] = {"A1", "A2", "B1", "B2", "B3", "C1",
 //item Description
 const string itemDesc[8] = {"Compact", "Tower", "8 GB", "24 GB",
                             "32 GB", "1 TB HDD", "2 TB HDD", "4 TB HDD"};
+
+// operating sytem 
+const string osCode[2] = {"G1", "G2"};
+const string os = "Operating System";
+const string osDesc[2] = {"Standard Version", "Professional Version"};
+const double osPrice[2] = {100.00, 175.00};
+
 //item price
 const double itemPrice[8] = {75.00, 210.00, 79.99, 149.99,
                             299.99, 49.99, 89.99, 139.99};
 
             // variables
 char ch;
+            //want operating system 
+char osCh;
 
 string caseChoice,
         ramChoice,
         hddChoice;
 
+string osChoice;
+
 double casePrice = 0,
         ramPrice = 0,
         hddPrice = 0,
+        osPriceS = 0,
         totalPrice = 0;
 
         
@@ -34,10 +46,13 @@ void menuDisplay();
 void caseMenu();
 void ramMenu();
 void hddMenu();
+void osMenu();
 void ramChoiceF();
 void caseChoiceF();
 void hddChoiceF();
+void osChoiceF();
 void showChoice();
+
 
         // main fun()
 int main(){
@@ -48,9 +63,9 @@ int main(){
 
         showChoice();       // display choices and store price
 
-        
-        totalPrice = ramPrice + hddPrice + casePrice;
-        cout << "\nTotal price : " << setw(8) << casePrice << setw(8) << ramPrice << setw(8) << hddPrice;
+        // price calculation
+        totalPrice = ramPrice + hddPrice + casePrice + osPriceS;
+        cout << "\nTotal price : " << setw(8) << casePrice << setw(8) << ramPrice << setw(8) << hddPrice << setw(8) << osPriceS;
 
         cout << "\n\nPress Enter key to restart.......";
         cin.get(ch);
@@ -72,11 +87,28 @@ void menuDisplay(){         // entire menu
     caseMenu();
     ramMenu();
     hddMenu();
+    osMenu();
+    
 
     // select choices
     caseChoiceF();
     ramChoiceF();
     hddChoiceF();
+    // for operating system
+    cout << "\n";
+    cout << "Do you want Opereating System(y/n) : ";
+    cin.get(osCh);
+    cin.ignore();
+    while(osCh != 'Y' && osCh != 'N' && osCh != 'y' && osCh != 'n'){
+        cout << "Invalid Entry\nTry Again\n";
+        cout << "Do you want Opereating System(y/n) : ";
+        cin.get(osCh);
+        cin.ignore();
+    }
+    if(osCh == 'y' || osCh == 'Y'){
+        osChoiceF();    // if user want operating System
+    }
+    
         
 }
 void caseMenu(){
@@ -101,7 +133,15 @@ void hddMenu(){
     cout << item[2] << setw(13) << itemCode[7] << setw(24) << itemDesc[7] << "\t\t" << fixed << setprecision(2) << itemPrice[7]; 
     cout << "\n"; 
 }
-    
+
+void osMenu(){
+    cout << os << setw(11) << osCode[0] << setw(29) << osDesc[0] << "\t" << fixed << setprecision(2) << osPrice[0];
+    cout << "\n";
+    cout << os << setw(11) << osCode[1] << setw(29) << osDesc[1] << "\t" << fixed << setprecision(2) << osPrice[1]; 
+    cout << "\n";
+
+}
+
 void caseChoiceF(){      // select for case  
     cout << "\nEnter the Code for items you want to buy\n";
     caseMenu();
@@ -169,7 +209,7 @@ void showChoice(){       // show and store price of selected items
             cout << item[0] << setw(23) << itemCode[0] << setw(24) << itemDesc[0] << "\t\t" << fixed << setprecision(2) << itemPrice[0];
             casePrice = itemPrice[0];
 
-        }
+    }
         else{
            cout << '\n' << item[0] << setw(23) << itemCode[1] << setw(24) << itemDesc[1] << "\t\t" << fixed << setprecision(2) << itemPrice[1]; 
             casePrice = itemPrice[1];
@@ -185,7 +225,7 @@ void showChoice(){       // show and store price of selected items
             ramPrice = itemPrice[3];
         }
         else{
-             cout << '\n' << item[1] << setw(24) << itemCode[4] << setw(24) << itemDesc[4] << "\t\t" << fixed << setprecision(2) << itemPrice[4];
+            cout << '\n' << item[1] << setw(24) << itemCode[4] << setw(24) << itemDesc[4] << "\t\t" << fixed << setprecision(2) << itemPrice[4];
             ramPrice = itemPrice[4];
         }
     
@@ -202,6 +242,43 @@ void showChoice(){       // show and store price of selected items
         cout << '\n' << item[2] << setw(13) << itemCode[7] << setw(24) << itemDesc[7] << "\t\t" << fixed << setprecision(2) << itemPrice[7];
         hddPrice = itemPrice[7];        
     }
+
+    // for operating system
+    if(osCh == 'y' || osCh == 'Y'){
+        if(osChoice == "g1" || osChoice == osCode[0]){
+            cout << "\n";
+            cout << os << setw(11) << osCode[0] << setw(29) << osDesc[0] << "\t" << fixed << setprecision(2) << osPrice[0];
+            osPriceS = osPrice[0];
+
+        }
+        else{
+           cout << '\n' << os << setw(11) << osCode[1] << setw(29) << osDesc[1] << "\t" << fixed << setprecision(2) << osPrice[1]; 
+            osPriceS = osPrice[1];
+        }
+
+    }
+    else{
+        osPriceS = 0;
+        cout << "\nYou selected no Operating System\n";
+
+    }
     
    
+}
+
+void osChoiceF(){        // select operating system
+    cout << "Enter the code for Operating sysetem\n";
+    osMenu();
+    cout << "\nFor OS : ";
+    cin >> osChoice;
+    cin.ignore();
+    while(osChoice != osCode[0] && osChoice != osCode[1] && osChoice != "g1" && osChoice != "g2"){
+        cout << "\nYou entered invalid Case code\nTry again!\n";
+        cout << "\n";
+        osMenu();
+        cout << "\nFor OS : ";
+
+        cin >> osChoice;
+        cin.ignore();   // empty keyboard buffer
+    }
 }
