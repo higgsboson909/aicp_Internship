@@ -52,6 +52,8 @@ void caseChoiceF();
 void hddChoiceF();
 void osChoiceF();
 void showChoice();
+void totalPriceF();
+
 
 
         // main fun()
@@ -63,9 +65,7 @@ int main(){
 
         showChoice();       // display choices and store price
 
-        // price calculation
-        totalPrice = ramPrice + hddPrice + casePrice + osPriceS;
-        cout << "\nTotal price : " << setw(8) << casePrice << setw(8) << ramPrice << setw(8) << hddPrice << setw(8) << osPriceS;
+        totalPriceF();      // display totalPrice 
 
         cout << "\n\nPress Enter key to restart.......";
         cin.get(ch);
@@ -281,4 +281,11 @@ void osChoiceF(){        // select operating system
         cin >> osChoice;
         cin.ignore();   // empty keyboard buffer
     }
+}
+void totalPriceF(){
+    // price calculation
+    totalPrice = casePrice + ramPrice + hddPrice + osPriceS;
+
+    cout << "\nThe Total Price of Computer is : " << totalPrice;
+
 }
