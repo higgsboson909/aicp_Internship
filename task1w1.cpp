@@ -21,7 +21,7 @@ const double osPrice[2] = {100.00, 175.00};
 
 //item price
 const double itemPrice[8] = {75.00, 210.00, 79.99, 149.99,
-                            299.99, 49.99, 89.99, 139.99};
+                            299.99, 49.99, 89.99, 129.99};
 
             // variables
 char ch;
